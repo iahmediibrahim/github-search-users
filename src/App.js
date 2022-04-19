@@ -10,7 +10,7 @@ function App() {
 				<Route path='/' exact>
 					<Dashboard />
 				</Route>
-				<Route path='login'>
+				<Route path='/login'>
 					<Login />
 				</Route>
 				<Route path='*'>
