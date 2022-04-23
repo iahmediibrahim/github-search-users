@@ -1,16 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useGithubContext } from '../context/context'
-import { ExampleChart } from './Charts'
+import { Pie3D } from './Charts'
 // Pie3D, Column3D, Bar3D, Doughnut2D
 
 const Repos = () => {
 	const { repos } = useGithubContext()
 	console.log(repos)
+	const chartData = [
+		{
+			label: 'Venezuela',
+			value: '290',
+		},
+		{
+			label: 'Saudi',
+			value: '260',
+		},
+		{
+			label: 'Canada',
+			value: '180',
+		},
+	]
 	return (
-		<h2>
-			<ExampleChart />
-		</h2>
+		<section className='global-section'>
+			<Wrapper className='section-center'>
+				<Pie3D data={chartData} />
+			</Wrapper>
+		</section>
 	)
 }
 
