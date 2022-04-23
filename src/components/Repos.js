@@ -1,51 +1,50 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useGithubContext } from '../context/context'
-import { Pie3D } from './Charts'
+import { Doughnut2D, Pie3D } from './Charts'
 // Pie3D, Column3D, Bar3D, Doughnut2D
 
 const Repos = () => {
 	const { repos } = useGithubContext()
-	console.log(repos)
-	let languages = repos.reduce((total, item) => {
-		const { language } = item
+	const languages = repos.reduce((total, item) => {
+		const { language, stargazers_count } = item
 		if (!language) return total
 		if (!total[language]) {
 			total[language] = {
 				label: language,
 				value: 1,
+				stars: stargazers_count,
 			}
 		} else {
 			total[language] = {
 				...total[language],
 				label: language,
 				value: total[language].value + 1,
+				stars: total[language].stars + stargazers_count,
 			}
 		}
 		return total
 	}, {})
-	languages = Object.values(languages)
+	const mostUsed = Object.values(languages)
 		.sort((a, b) => b.value - a.value)
 		.slice(0, 5)
 	console.log(languages)
-	const chartData = [
-		{
-			label: 'Venezuela',
-			value: '290',
-		},
-		{
-			label: 'Saudi',
-			value: '260',
-		},
-		{
-			label: 'Canada',
-			value: '180',
-		},
-	]
+	// most stars per language
+	const mostPopular = Object.values(languages)
+		.sort((a, b) => b.stars - a.stars)
+		.map((item) => {
+			return { ...item, value: item.stars }
+		})
+		.slice(0, 5)
+
 	return (
 		<section className='global-section'>
 			<Wrapper className='section-center'>
-				<Pie3D data={languages} />
+				<Pie3D data={mostUsed} />
+				<div></div>
+				<Doughnut2D data={mostPopular} />
+
+				<div></div>
 			</Wrapper>
 		</section>
 	)
