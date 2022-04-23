@@ -7,6 +7,27 @@ import { Pie3D } from './Charts'
 const Repos = () => {
 	const { repos } = useGithubContext()
 	console.log(repos)
+	let languages = repos.reduce((total, item) => {
+		const { language } = item
+		if (!language) return total
+		if (!total[language]) {
+			total[language] = {
+				label: language,
+				value: 1,
+			}
+		} else {
+			total[language] = {
+				...total[language],
+				label: language,
+				value: total[language].value + 1,
+			}
+		}
+		return total
+	}, {})
+	languages = Object.values(languages)
+		.sort((a, b) => b.value - a.value)
+		.slice(0, 5)
+	console.log(languages)
 	const chartData = [
 		{
 			label: 'Venezuela',
@@ -24,7 +45,7 @@ const Repos = () => {
 	return (
 		<section className='global-section'>
 			<Wrapper className='section-center'>
-				<Pie3D data={chartData} />
+				<Pie3D data={languages} />
 			</Wrapper>
 		</section>
 	)
