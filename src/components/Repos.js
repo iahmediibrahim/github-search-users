@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useGithubContext } from '../context/context'
-import { Doughnut2D, Pie3D } from './Charts'
+import { Bar3D, Column3D, Doughnut2D, Pie3D } from './Charts'
 // Pie3D, Column3D, Bar3D, Doughnut2D
 
 const Repos = () => {
@@ -41,10 +41,9 @@ const Repos = () => {
 		<section className='global-section'>
 			<Wrapper className='section-center'>
 				<Pie3D data={mostUsed} />
-				<div></div>
+				<Column3D data={mostPopular} />
 				<Doughnut2D data={mostPopular} />
-
-				<div></div>
+				<Bar3D data={mostPopular} />
 			</Wrapper>
 		</section>
 	)
