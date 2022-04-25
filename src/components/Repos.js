@@ -28,7 +28,6 @@ const Repos = () => {
 	const mostUsed = Object.values(languages)
 		.sort((a, b) => b.value - a.value)
 		.slice(0, 5)
-	console.log(languages)
 	// most stars per language
 	const mostPopular = Object.values(languages)
 		.sort((a, b) => b.stars - a.stars)

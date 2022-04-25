@@ -21,6 +21,15 @@ const GithubProvider = ({ children }) => {
 		show: false,
 		message: '',
 	})
+	const searchGithubUser = async (user) => {
+		toggleError()
+		const resp = await axios(`${rootUrl}/users/${user}`).catch((err) => console.log(err))
+		if (resp) {
+			setGithubUser(resp.data)
+		} else {
+			toggleError(true, 'there is no user with that username')
+		}
+	}
 	// check rate
 	const checkRequests = () => {
 		axios(`${rootUrl}/rate_limit`)
@@ -52,6 +61,7 @@ const GithubProvider = ({ children }) => {
 				followers,
 				requests,
 				error,
+				searchGithubUser,
 			}}>
 			{children}
 		</GithubContext.Provider>

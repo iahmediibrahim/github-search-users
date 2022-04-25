@@ -3,13 +3,13 @@ import { MdSearch } from 'react-icons/md'
 import styled from 'styled-components'
 import { useGithubContext } from '../context/context'
 const Search = () => {
-	const { requests, error } = useGithubContext()
+	const { requests, error, searchGithubUser } = useGithubContext()
 	const [user, setUser] = useState('')
 	// get things from global context
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (user) {
-			console.log(user)
+			searchGithubUser(user)
 		}
 	}
 	return (
