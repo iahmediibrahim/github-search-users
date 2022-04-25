@@ -1,12 +1,12 @@
 import React from 'react'
-import { Info, Repos, User } from '../components'
+import { Info, Repos, Search, User } from '../components'
 // import loadingImage from '../images/preloader.gif';
 // import { GithubContext } from '../context/context';
 const Dashboard = () => {
 	return (
 		<main>
 			{/* <Navbar /> */}
-			{/* <Search /> */}
+			<Search />
 			<Info />
 			<User />
 			<Repos />
