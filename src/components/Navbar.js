@@ -3,11 +3,10 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Navbar = () => {
-	const { isAuthenticated, loginWithRedirect, isLoading, user, error, logout } = useAuth0()
+	const { isAuthenticated, user, logout } = useAuth0()
 	const isUser = isAuthenticated && user
 	return (
 		<Wrapper>
-			{!isUser && <button onClick={loginWithRedirect}>login</button>}
 			{isUser && (
 				<>
 					<img src={user.picture} alt={user.name} />
